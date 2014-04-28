@@ -61,7 +61,7 @@ NameList nameList[] = {
 int main (int argc, char **argv)
 {
   GetNameList (argc, argv);
-  PrintNameList (stdout);
+  //PrintNameList (stdout);
   SetParams ();
   SetupJob ();
   moreCycles = 1;
@@ -133,11 +133,19 @@ void AllocArrays ()
 
 void PrintSummary (FILE *fp)
 {
-  fprintf (fp, "%.2f %.10g %.10g %.3f",
-     timeNow, collCount, crossCount, VCSum (vSum) / nMol);
-  fprintf (fp, " %.3f", kinEnVal);
-  fprintf (fp, "\n");
-  fflush (fp);
+  //fprintf (fp, "%.2f %.10g %.10g %.3f",
+  //   timeNow, collCount, crossCount, VCSum (vSum) / nMol);
+  //fprintf (fp, " %.3f", kinEnVal);
+  //fprintf (fp, "\n");
+  //fflush (fp);
+
+  int n;
+  printf("%d\n",nMol);
+  printf ("%.2f kinEnVal = %.3f\n", timeNow,kinEnVal);
+  for (n=0;n<nMol;n++) {
+    printf("C %8.3f  %8.3f  %8.3f atom_vector %8.3f  %8.3f  %8.3f\n",mol[n].r.x,mol[n].r.y,mol[n].r.z,mol[n].rv.x,mol[n].rv.y,mol[n].rv.z);
+  }  
+  //printf("------\n");
 }
 
 void EvalFreePath ()
@@ -177,12 +185,12 @@ void PrintFreePath (FILE *fp)
   real pVal;
   int n;
 
-  fprintf (fp, "free path\n");
+  //fprintf (fp, "free path\n");
   for (n = 0; n < sizeHistFreePath; n ++) {
     pVal = (n + 0.5) * rangeFreePath / sizeHistFreePath;
-    fprintf (fp, "%8.4f %8.4f\n", pVal, histFreePath[n]);
+    //fprintf (fp, "%8.4f %8.4f\n", pVal, histFreePath[n]);
   }
-  fflush (fp);
+  //fflush (fp);
 }
 
 
